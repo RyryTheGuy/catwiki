@@ -58,7 +58,7 @@ export default function Home({ catNames, fourCats }) {
               Get to know more about your cat breed
             </h3>
             {/* Search bar */}
-            <SearchBar catNames={catNames} />
+            <SearchBar catNames={catNames} handleCatSelection={(catId) => console.log('Cat chosen!', catId)} />
               {/* todo: add the dropdown with the search results */}
           </div>
         </div>
