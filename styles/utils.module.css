@@ -1,0 +1,21 @@
+.whiteLogo {
+  filter: saturate(0%) brightness(10000%);
+}
+
+.underline {
+  position: relative;
+  display: inline;
+  padding-bottom: .75rem;
+}
+
+.underline::after {
+  display: block;
+  content: '';
+  width: 33%;
+  height: 3px;
+  background-color: black;
+  border-radius: 77px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
