@@ -1,18 +1,21 @@
+import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Script from 'next/script';
-import Layout from '../components/layout';
+import Layout from '../components/Layout/layout';
 import { getAllBreeds } from '../lib/catAPI';
 import styles from '../styles/Home.module.css';
 import utilStyles from '../styles/utils.module.css';
+import { SearchBar } from '../components/SearchBar/searchbar';
 
 export async function getServerSideProps() {
   const cats = await getAllBreeds();
   const fourCats = chooseFourCats(cats);
+  const catNames = cats.map(cat => ({id: cat.id, name: cat.name}));
 
   return {
     props: {
-      cats,
+      catNames,
       fourCats
     }
   };
@@ -39,7 +42,7 @@ const chooseFourCats = (cats) => {
   ];
 };
 
-export default function Home({ cats, fourCats }) {
+export default function Home({ catNames, fourCats }) {
   return (
     <Layout>
       <Head>
@@ -54,10 +57,8 @@ export default function Home({ cats, fourCats }) {
             <h3 style={{ marginBottom: '5rem', fontWeight: 'normal' }}>
               Get to know more about your cat breed
             </h3>
-            <div className={styles.catSearch}>
-              <input type='search' placeholder='Enter your breed' />
-              <i className="fas fa-search" style={{ color: 'black', alignSelf: 'center'}}></i>
-            </div>
+            {/* Search bar */}
+            <SearchBar catNames={catNames} />
               {/* todo: add the dropdown with the search results */}
           </div>
         </div>
@@ -70,11 +71,10 @@ export default function Home({ cats, fourCats }) {
           </div>
           <div className={styles.catDisplay}>
             {fourCats.map((cat) => (
-              /* Todo: make this clickable to go to the cat page */
               <div key={cat.id}>
                 {/* Cat Image */}
                 <div className={styles.catImage}>
-                  <Image  src={cat.image?.url ?? '/kitten-silhouette-2993fc-lg+copy_ForgottenKitten_2.jpg'} alt={cat.name} layout='fill' />
+                  <Image src={cat.image?.url ?? '/kitten-silhouette-2993fc-lg+copy_ForgottenKitten_2.jpg'} alt={cat.name} layout='fill' objectFit='cover' />
                 </div>
                 {/* Cat Name */}
                 <p style={{ fontWeight: '500'}}>{cat.name}</p>
@@ -86,7 +86,6 @@ export default function Home({ cats, fourCats }) {
           </div>
         </div>
       </header>
-      <Script src="https://kit.fontawesome.com/65fd9b8384.js" crossOrigin="anonymous"></Script>
     </Layout>
   );
 }
