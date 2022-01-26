@@ -25,6 +25,10 @@ export function SearchBar({ catNames, handleCatSelection }) {
     indicatorsContainer: styles => ({
       ...styles, 
       display: 'none'
+    }),
+    menu: styles => ({
+      ...styles,
+      padding: '.5rem',
     })
   };
 
