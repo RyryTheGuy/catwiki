@@ -7,6 +7,7 @@ import { getAllBreeds } from '../lib/catAPI';
 import styles from '../styles/Home.module.css';
 import utilStyles from '../styles/utils.module.css';
 import { SearchBar } from '../components/SearchBar/searchbar';
+import Link from 'next/link';
 
 export async function getServerSideProps() {
   const cats = await getAllBreeds();
@@ -43,6 +44,18 @@ const chooseFourCats = (cats) => {
 };
 
 export default function Home({ catNames, fourCats }) {
+  const [catId, setCatId] = React.useState(null);
+  const catLink = React.useRef(null);
+
+  React.useEffect(() => {
+    if (catId) catLink.current.click();
+  }, [catId]);
+
+  const handleCatSelection = (Id) => {
+    setCatId(Id);
+    console.log('Cat chosen!', catId);
+  };
+
   return (
     <Layout>
       <Head>
@@ -60,8 +73,18 @@ export default function Home({ catNames, fourCats }) {
             {/* Search bar */}
             <SearchBar 
               catNames={catNames} 
-              handleCatSelection={(catId) => console.log('Cat chosen!', catId)} 
+              handleCatSelection={(catId) => handleCatSelection(catId)} 
             />
+            <Link 
+              href={`/cats/${catId}`} 
+            >
+              <a
+                style={{ display: 'none' }}
+                ref={catLink}
+              >
+                Not supposed to see
+              </a>
+            </Link>
           </div>
         </div>
 
