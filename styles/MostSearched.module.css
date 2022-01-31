@@ -1,0 +1,38 @@
+.title {
+  padding-top: 1rem;
+}
+
+.cat-list {
+  padding: 2rem 0;
+  line-height: 1.4;
+}
+
+.cat-list-item {
+  display: flex;
+  width: 100%;
+  margin: 3rem auto;
+}
+
+.cat-list-item__image {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  border-radius: 24px;
+  min-width: 20rem;
+  height: 20rem;
+}
+
+.cat-list-item__text {
+  width: 80%;
+  padding-left: 4rem;
+}
+
+.cat-list-item__text h3 {
+  font-weight: 500;
+  font-size: 3rem;
+  margin-top: 0;
+}
+
+.cat-list-item__text p {
+  font-size: 1.1rem;
+}
