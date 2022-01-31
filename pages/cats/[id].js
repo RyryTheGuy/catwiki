@@ -38,7 +38,7 @@ export default function Cat({ cat, images, statusCode }) {
         {/* Cat Image */}
         <div className={styles['cat-image']}>
           <div className={styles['cat-image__container']}>
-            <Image src={cat.image.url ?? '/kitten-silhouette-2993fc-lg+copy_ForgottenKitten_2.jpg'} alt={`${cat.name}`} layout="fill" objectFit="cover" />
+            <Image src={cat.image?.url ?? '/kitten-silhouette-2993fc-lg+copy_ForgottenKitten_2.jpg'} alt={`${cat.name}`} layout="fill" objectFit="cover" />
           </div>
         </div>
 
