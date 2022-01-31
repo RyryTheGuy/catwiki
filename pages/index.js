@@ -90,7 +90,7 @@ export default function Home({ catNames, fourCats, statusCode }) {
               href={`/cats/${catId}`} 
             >
               <a
-                style={{ display: 'none' }}
+                className={utilStyles.hidden}
                 ref={catLink}
               >
                 hidden
