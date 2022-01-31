@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './layout.module.css';
 import utilStyles from '../../styles/utils.module.css';
 
@@ -11,14 +12,18 @@ export default function Layout({children}) {
       </Head>
       <nav className={styles.nav}>
         {/* catwiki logo */}
-        <Image src="/CatwikiLogo.svg" alt='Cat Wiki Logo' height={50} width={150} />
+        <Link href='/'>
+          <a>
+            <Image src="/CatwikiLogo.svg" alt='Cat Wiki Logo' height={50} width={150} />
+          </a>
+        </Link>
       </nav>
       <main>{children}</main>
       <footer className={styles.footer}>
         <Image src="/CatwikiLogo.svg" alt='Cat Wiki Logo' height={50} width={150} className={utilStyles.whiteLogo} />
         <p>
           &copy; created by{' '}
-          <a>RyryTheGuy</a>
+          <a target='_blank' href='https://github.com/RyryTheGuy' rel="noreferrer noopener">RyryTheGuy</a>
           - devChallenge.io 2022
         </p>
       </footer>
