@@ -103,8 +103,10 @@ export default function Home({ catNames, fourCats, statusCode }) {
           <p className={utilStyles.underline}>Most Searched Breeds</p>
           <div className={styles['discover-breeds__title-container']}>
             <h2 className={styles['discover-breeds__title']}>66+ Breeds For you to discover</h2>
-            {/* todo: make this work */}
-            <a className={styles['discover-breeds__link']}>SEE MORE &#8594;</a>
+            <Link href={'/mostSearched'} className={styles['discover-breeds__link']}>
+              <a>SEE MORE &#8594;</a>
+
+            </Link>
           </div>
           <div className={styles['cat-display']}>
             {fourCats.map((cat) => (
