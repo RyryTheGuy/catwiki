@@ -1,9 +1,11 @@
 import Layout from "../../components/Layout/layout";
 import Image from "next/image";
+import Error from "next/error";
 import styles from './[id].module.css';
 import utilStyles from '../../styles/utils.module.css';
 import { get8BreedImages, getSpecificCatInfo } from "../../lib/catAPI";
 import { Statbar } from "../../components/StatBar/statbar";
+import Head from "next/head";
 
 export async function getServerSideProps({ params }) {
   const [cat, images] = await Promise.allSettled([getSpecificCatInfo(params.id), get8BreedImages(params.id)]);
@@ -13,18 +15,24 @@ export async function getServerSideProps({ params }) {
       props: {
         cat: cat.value,
         images: images.value,
+        statusCode: 200,
       }
     };
   }
 
-  throw new Error('Unable to get information to load the page');
+  return { props: { statusCode: 503 }};
 }
 
-export default function Cat({ cat, images }) {
-  console.log(cat, images);
+export default function Cat({ cat, images, statusCode }) {
+  if (statusCode !== 200) {
+    return <Error statusCode={statusCode} />;
+  }
 
   return (
     <Layout>
+      <Head>
+        <title>Cat Wiki | {cat.name}</title>
+      </Head>
       {/* Cat Info */}
       <section className={styles['cat-information']}>
         {/* Cat Image */}

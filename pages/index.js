@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import Script from 'next/script';
+import Error from 'next/error';
 import Layout from '../components/Layout/layout';
 import { getAllBreeds } from '../lib/catAPI';
 import styles from '../styles/Home.module.css';
@@ -10,14 +10,21 @@ import { SearchBar } from '../components/SearchBar/searchbar';
 import Link from 'next/link';
 
 export async function getServerSideProps() {
-  const cats = await getAllBreeds();
+  const response = await getAllBreeds();
+  const cats = await response.json();
+
+  if (response.status !== 200) {
+    return { props: { statusCode: response.status }};
+  }
+
   const fourCats = chooseFourCats(cats);
   const catNames = cats.map(cat => ({id: cat.id, name: cat.name}));
 
   return {
     props: {
       catNames,
-      fourCats
+      fourCats,
+      statusCode: 200,
     }
   };
 }
@@ -43,13 +50,17 @@ const chooseFourCats = (cats) => {
   ];
 };
 
-export default function Home({ catNames, fourCats }) {
+export default function Home({ catNames, fourCats, statusCode }) {
   const [catId, setCatId] = React.useState(null);
   const catLink = React.useRef(null);
 
   React.useEffect(() => {
     if (catId) catLink.current.click();
   }, [catId]);
+
+  if (statusCode !== 200) {
+    return <Error statusCode={statusCode} />;
+  }
 
   const handleCatSelection = (Id) => {
     setCatId(Id);
@@ -82,7 +93,7 @@ export default function Home({ catNames, fourCats }) {
                 style={{ display: 'none' }}
                 ref={catLink}
               >
-                Not supposed to see
+                hidden
               </a>
             </Link>
           </div>
