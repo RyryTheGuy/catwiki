@@ -77,7 +77,7 @@ export default function Home({ catNames, fourCats, statusCode }) {
       <header className={styles.header}>
         <div className={styles['cat-background']}>
           <div className={styles['cat-background__container']}>
-            <Image src='/CatWikiLogo.svg' alt='Cat Wiki Logo' height={100} width={300} className={utilStyles.whiteLogo} />
+            <Image src='/CatwikiLogo.svg' alt='Cat Wiki Logo' height={100} width={300} className={utilStyles.whiteLogo} />
             <h3 className={styles['cat-background__title']}>
               Get to know more about your cat breed
             </h3>
