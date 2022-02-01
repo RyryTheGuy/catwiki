@@ -57,28 +57,28 @@ export default function Cat({ cat, images, statusCode }) {
             <span className={utilStyles.bold}>Life Span: </span>{cat.life_span} years
           </p>
           <div className={styles['cat-stats__bars']}>
-            Adaptability: <Statbar level={cat.adaptability} />
+            <p>Adaptability: </p> <Statbar level={cat.adaptability} />
           </div>
           <div className={styles['cat-stats__bars']}>
-            Affection level: <Statbar level={cat.affection_level} />
+            <p>Affection level: </p> <Statbar level={cat.affection_level} />
           </div>
           <div className={styles['cat-stats__bars']}>
-            Child Friendly: <Statbar level={cat.child_friendly}/>
+            <p>Child Friendly: </p> <Statbar level={cat.child_friendly}/>
           </div>
           <div className={styles['cat-stats__bars']}>
-            Grooming: <Statbar level={cat.grooming} />
+            <p>Grooming: </p> <Statbar level={cat.grooming} />
           </div>
           <div className={styles['cat-stats__bars']}>
-            Intelligence: <Statbar level={cat.intelligence} />
+            <p>Intelligence: </p> <Statbar level={cat.intelligence} />
           </div>
           <div className={styles['cat-stats__bars']}>
-            Health issues: <Statbar level={cat.health_issues} />
+            <p>Health issues: </p> <Statbar level={cat.health_issues} />
           </div>
           <div className={styles['cat-stats__bars']}>
-            Social needs: <Statbar level={cat.social_needs} />
+            <p>Social needs: </p> <Statbar level={cat.social_needs} />
           </div>
           <div className={styles['cat-stats__bars']}>
-            Stranger friendly: <Statbar level={cat.stranger_friendly} />
+            <p>Stranger friendly: </p> <Statbar level={cat.stranger_friendly} />
           </div>
         </div>
       </section>

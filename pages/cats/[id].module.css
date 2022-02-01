@@ -35,6 +35,7 @@
 
 .cat-stats {
   width: 66%;
+  margin: auto;
   padding: 0 3rem 0 5rem;
 }
 
@@ -43,8 +44,7 @@
 }
 
 .cat-stats__bars {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
+  display: flex;
   font-weight: 700;
   width: 100%;
 
@@ -53,4 +53,49 @@
 
 .other-photos__title {
   padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 1150px) {
+  .cat-information {
+    display: inline-block;
+  }
+
+  .cat-image {
+    width: 70%;
+    height: 30rem;
+    margin: auto;
+  }
+
+  .cat-image__container {
+    height: 100%;
+    width: 100%;
+  }
+
+  .cat-image::after {
+    display: none;
+  }
+
+  .cat-stats {
+    width: 100%;
+    padding: 0 1rem 0 0;
+  }
+
+  .cat-stats__bars {
+    flex-direction: column;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cat-image {
+    width: 100%;
+  }
+
+  .cat-stats {
+    padding: 0;
+  }
+
+  .cat-image__container {
+    height: 100%;
+  }
 }

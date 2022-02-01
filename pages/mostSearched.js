@@ -1,7 +1,7 @@
 import Error from "next/error";
 import Image from "next/image";
 import Layout from "../components/Layout/layout";
-import styles from '../styles/MostSearched.module.css';
+import styles from '../styles/mostsearched.module.css';
 import { getAllBreeds } from "../lib/catAPI";
 
 export async function getServerSideProps() {

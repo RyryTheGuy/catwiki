@@ -1,5 +1,7 @@
 .stat-bar {
   display: flex;
+  margin: auto;
+  padding: 0 1rem;
   width: 100%;
   justify-content: space-between;
 }

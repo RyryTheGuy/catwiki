@@ -36,3 +36,33 @@
 .cat-list-item__text p {
   font-size: 1.1rem;
 }
+
+@media screen and (max-width: 1150px) {
+  .cat-list-item__text h3 {
+    font-size: 2rem;
+  }
+
+  .cat-list-item__text p {
+    font-size: 1rem;
+  }
+  
+  .cat-list-item__image {
+    min-width: 15rem;
+    height: 15rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cat-list-item__text h3 {
+    font-size: 1.5rem;
+  }
+  
+  .cat-list-item__text p {
+    font-size: 1rem;
+  }
+
+  .cat-list-item__image {
+    min-width: 10rem;
+    height: 10rem;
+  }
+}

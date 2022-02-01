@@ -29,3 +29,31 @@
   height: 100%;
   border-radius: 24px;
 }
+
+@media screen and (max-width: 1150px) {
+  .four-photos {
+    height: 15rem;
+    column-gap: 1rem;
+  }
+
+  .eight-photos {
+    height: 35rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .four-photos {
+    height: 10rem;
+    gap: 1rem;
+  }
+
+  .six-photos {
+    height: 20rem;
+    gap: 1rem;
+  }
+
+  .eight-photos {
+    height: 20rem;
+    gap: 1rem;
+  }
+}
