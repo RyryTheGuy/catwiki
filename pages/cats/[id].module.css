@@ -51,6 +51,10 @@
   padding: 1rem 0;
 }
 
+.cat-stats__bars p {
+  width: 10rem;
+}
+
 .other-photos__title {
   padding-bottom: 2rem;
 }
