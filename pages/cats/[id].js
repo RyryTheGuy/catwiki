@@ -6,6 +6,7 @@ import utilStyles from '../../styles/utils.module.css';
 import { get8BreedImages, getSpecificCatInfo } from "../../lib/catAPI";
 import { Statbar } from "../../components/StatBar/statbar";
 import Head from "next/head";
+import { PhotoDisplayGrid } from "../../components/PhotoDisplayGrid/photodisplaygrid";
 
 export async function getServerSideProps({ params }) {
   const [cat, images] = await Promise.allSettled([getSpecificCatInfo(params.id), get8BreedImages(params.id)]);
@@ -85,13 +86,7 @@ export default function Cat({ cat, images, statusCode }) {
       {/* Other Photos */}
       <section className={styles['other-photos']}>
         <h2 className={styles['other-photos__title']}>Other photos</h2>
-        <div className={styles['photos']}>
-          {images.map(image => (
-            <div key={image.id} className={styles['photos__image-container']}>
-              <Image src={image.url} alt="Image" layout="fill" objectFit="cover" />
-            </div>
-          ))}
-        </div>
+        <PhotoDisplayGrid images={images} />
       </section>
     </Layout>
   );
