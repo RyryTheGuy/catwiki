@@ -1,8 +1,9 @@
 import Error from "next/error";
 import Image from "next/image";
 import Layout from "../components/Layout/layout";
-import styles from '../styles/mostsearched.module.css';
+import styles from '../styles/MostSearched.module.css';
 import { getAllBreeds } from "../lib/catAPI";
+import Head from "next/head";
 
 export async function getServerSideProps() {
   const response = await getAllBreeds();
@@ -49,6 +50,10 @@ export default function MostSearched({ cats, statusCode }) {
 
   return (
     <Layout>
+      <Head>
+        <title>Cat Wiki | Most Searched</title>
+      </Head>
+
       <h2 className={styles.title}>Top 10 most searched breeds</h2>
       <section className={styles['cat-list']}>
         {cats.map((cat, index) => {
