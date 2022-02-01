@@ -86,13 +86,8 @@ export default function Home({ catNames, fourCats, statusCode }) {
               catNames={catNames} 
               handleCatSelection={(catId) => handleCatSelection(catId)} 
             />
-            <Link 
-              href={`/cats/${catId}`} 
-            >
-              <a
-                className={utilStyles.hidden}
-                ref={catLink}
-              >
+            <Link href={`/cats/${catId}`} >
+              <a className={utilStyles.hidden} ref={catLink} >
                 hidden
               </a>
             </Link>
@@ -129,10 +124,9 @@ export default function Home({ catNames, fourCats, statusCode }) {
           <p className={styles['benefits-container__text']}>
             Having a cat around you can actually trigger the release of calming chemicals in your body which lower your stress and anxiety levels.
           </p>
-          {/* todo: make this work */}
-          <a className={styles['benefits-container__link']}>READ MORE &#8594;</a>
+          <a className={styles['benefits-container__link']} href='https://animalkind.org/blog/top-5-reasons-cat/' target="_blank" rel="noreferrer noopener">READ MORE &#8594;</a>
         </div>
-        <div className={styles['benefits-container--flex']} style={{ display: 'flex' }}>
+        <div className={styles['benefits-container--flex']}>
           <div className={styles['image-container']}>
             <div className={styles['image2']}>
               <Image 

@@ -4,6 +4,27 @@ import Script from 'next/script';
 import styles from './searchbar.module.css';
 
 export function SearchBar({ catNames, handleCatSelection }) {
+  const [onMobile, setOnMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    if (window.innerWidth < 601) {
+      setOnMobile(true);
+    } else {
+      setOnMobile(false);
+    }
+
+    const updateMedia = () => {
+      if (window.innerWidth < 601) {
+        setOnMobile(true);
+      } else {
+        setOnMobile(false);
+      }
+    };
+
+    window.addEventListener('resize', updateMedia);
+    return () => window.removeEventListener('resize', updateMedia);
+  }, []);
+  
   const options = catNames.map(cat => ({ value: cat.id, label: cat.name }));
 
   const colorStyles = {
@@ -29,6 +50,7 @@ export function SearchBar({ catNames, handleCatSelection }) {
     menu: styles => ({
       ...styles,
       padding: '.5rem',
+      width: onMobile ? '250%' : '100%'
     })
   };
 
@@ -40,7 +62,7 @@ export function SearchBar({ catNames, handleCatSelection }) {
         options={options} 
         defaultValue={null}
         onChange={({ value }) => handleCatSelection(value)}
-        placeholder="Enter your breed"
+        placeholder="Search"
         isSearchable={true}
       />
       <i className="fas fa-search" style={{ color: 'black', alignSelf: 'center'}}></i>

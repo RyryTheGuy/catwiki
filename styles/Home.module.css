@@ -13,7 +13,7 @@
 }
 
 .cat-background__container {
-  width: 33%;
+  width: 46%;
 }
 
 .cat-background__title {
@@ -46,7 +46,6 @@
   display: grid;
   position: relative;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr;
   column-gap: 2rem;
   height: 23rem;
   padding-bottom: 3rem;
@@ -148,4 +147,98 @@
   height: 30rem;
   border-radius: 24px;
   margin-left: 2rem;
+}
+
+@media screen and (max-width: 1150px) {
+  .cat-background {
+    background: url('./../public/HeroImagemd.png') no-repeat right #050709;
+  }
+
+  .cat-background__container {
+    width: 60%;
+  }
+
+  .discover-breeds__title {
+    margin-right: 1rem;
+  }
+
+  .cat-display {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 5rem;
+    height: 50rem;
+  }
+
+  .cat-display::after {
+    height: 30%;
+    bottom: 65%;
+  }
+
+  .cat-benefits {
+    display: inline-block;
+  }
+
+  .benefits-container {
+    width: 100%;
+    padding: 3rem 0;
+  }
+
+  .benefits-container--flex {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cat-background {
+    background: url('./../public/HeroImagesm.png') no-repeat right #050709;
+    height: 15rem;
+    padding: 1rem 2rem 2rem 2rem;
+  }
+
+  .cat-background__container {
+    width: 50%;
+    height: 20rem;
+  }
+
+  .cat-background__title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .discover-breeds {
+    padding: 2rem;
+  }
+
+  .discover-breeds__title-container {
+    display: inline-block;
+  }
+
+  .discover-breeds__title {
+    margin-bottom: 1rem;
+  }
+
+  .cat-display {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 5rem;
+    height: 25rem;
+  }
+
+  .cat-display::after {
+    height: 25%;
+    bottom: 70%;
+  }
+
+  .cat-benefits {
+    display: inline-block;
+  }
+
+  .benefits-container {
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+
+  .benefits-container--flex {
+    width: 100%;
+    padding: 2rem 1rem;
+  }
 }

@@ -18,3 +18,24 @@
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
 }
+
+@media screen and (max-width: 1150px) {
+  .container {
+    padding: 0 3rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 0 .5rem;
+  }
+
+  .nav {
+    padding-top: 1rem;
+  }
+
+  .footer {
+    display: inline-block;
+    padding: 2rem;
+  }
+}
