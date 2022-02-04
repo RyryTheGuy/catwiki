@@ -32,12 +32,11 @@
 
 ![screenshot](https://imgur.com/GeIGlz2.png)
 
-<!-- Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
+Cat Wiki is a small project using the Cat API to create a wikipedia-like website about cats.
 
-- Where can I see your demo?
-- What was your experience?
-- What have you learned/improved?
-- Your wisdom? :) -->
+This project was pretty fun to create as I was able to use and learn NextJS for the first time. I can definitely see why NextJS is so popular as the static/server side rendering made the website feel way faster and smoother. Also, not having to setup webpack to shrink down the compiled javascript and having NextJS do that out of the box was very convenient. I used modular css this project (instead of Bootstrap or Tailwind) which forced me to learn BEM, Block Element Modifier. BEM is a popular css naming convention used to increase development speed, debugging, and implementing new features. BEM definitely helped speed up the development process of allowing me to name elements correctly and accurately so I could easily understand what was being styled/altered. 
+
+In the end, I'm very happy with how Cat Wiki turned out. I might add some extra UX features like having certain cats that are displayed clickable links so the user can jump to that cat specific page with ease. I really recommend NextJS to anyone curious about it and definitely plan to use it more in future projects.
 
 ### Built With
 
