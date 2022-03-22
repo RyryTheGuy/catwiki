@@ -62,11 +62,6 @@ export default function Home({ catNames, fourCats, statusCode }) {
     return <Error statusCode={statusCode} />;
   }
 
-  const handleCatSelection = (Id) => {
-    setCatId(Id);
-    console.log('Cat chosen!', catId);
-  };
-
   return (
     <Layout>
       <Head>
@@ -84,7 +79,7 @@ export default function Home({ catNames, fourCats, statusCode }) {
             {/* Search bar */}
             <SearchBar 
               catNames={catNames} 
-              handleCatSelection={(catId) => handleCatSelection(catId)} 
+              handleCatSelection={(catId) => setCatId(catId)} 
             />
             <Link href={`/cats/${catId}`} >
               <a className={utilStyles.hidden} ref={catLink} >
