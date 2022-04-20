@@ -7,22 +7,8 @@ import { get8BreedImages, getSpecificCatInfo } from "../../lib/catAPI";
 import { Statbar } from "../../components/StatBar/statbar";
 import Head from "next/head";
 import { PhotoDisplayGrid } from "../../components/PhotoDisplayGrid/photodisplaygrid";
-
-export async function getServerSideProps({ params }) {
-  const [cat, images] = await Promise.allSettled([getSpecificCatInfo(params.id), get8BreedImages(params.id)]);
-
-  if (cat.status === 'fulfilled' && images.status === 'fulfilled') {
-    return {
-      props: {
-        cat: cat.value,
-        images: images.value,
-        statusCode: 200,
-      }
-    };
-  }
-
-  return { props: { statusCode: 503 }};
-}
+import { getPlaiceholder } from "plaiceholder";
+import missingCatPhoto from '../../public/kitten-silhouette-2993fc-lg+copy_ForgottenKitten_2.jpg';
 
 export default function Cat({ cat, images, statusCode }) {
   if (statusCode !== 200) {
@@ -39,7 +25,7 @@ export default function Cat({ cat, images, statusCode }) {
         {/* Cat Image */}
         <div className={styles['cat-image']}>
           <div className={styles['cat-image__container']}>
-            <Image src={cat.image?.url ?? '/kitten-silhouette-2993fc-lg+copy_ForgottenKitten_2.jpg'} alt={`${cat.name}`} layout="fill" objectFit="cover" />
+            <Image src={cat.image?.url ?? missingCatPhoto} alt={`${cat.name}`} layout="fill" objectFit="cover" placeholder="blur" blurDataURL={cat.blurDataURL} />
           </div>
         </div>
 
@@ -90,4 +76,29 @@ export default function Cat({ cat, images, statusCode }) {
       </section>
     </Layout>
   );
+}
+
+export async function getServerSideProps({ params }) {
+  const [cat, images] = await Promise.allSettled([getSpecificCatInfo(params.id), get8BreedImages(params.id)]);
+
+  if (cat.status === 'fulfilled' && images.status === 'fulfilled') {
+    const imagesWithBlur = await Promise.all(images.value.map( async (image) => {
+      const { base64, img } = await getPlaiceholder(image.url);
+      return {
+        id: image.id,
+        image: img,
+        blurDataURL: base64
+      };
+    }));
+
+    return {
+      props: {
+        cat: cat.value,
+        images: imagesWithBlur,
+        statusCode: 200,
+      }
+    };
+  }
+
+  return { props: { statusCode: 503 }};
 }

@@ -8,26 +8,11 @@ import styles from '../styles/Home.module.css';
 import utilStyles from '../styles/utils.module.css';
 import { SearchBar } from '../components/SearchBar/searchbar';
 import Link from 'next/link';
-
-export async function getServerSideProps() {
-  const response = await getAllBreeds();
-  const cats = await response.json();
-
-  if (response.status !== 200) {
-    return { props: { statusCode: response.status }};
-  }
-
-  const fourCats = chooseFourCats(cats);
-  const catNames = cats.map(cat => ({id: cat.id, name: cat.name}));
-
-  return {
-    props: {
-      catNames,
-      fourCats,
-      statusCode: 200,
-    }
-  };
-}
+import { getPlaiceholder } from 'plaiceholder';
+import image1 from '../public/image 1.png';
+import image2 from '../public/image 2.png';
+import image3 from '../public/image 3.png';
+import missingImagePlaceholder from '../public/kitten-silhouette-2993fc-lg+copy_ForgottenKitten_2.jpg';
 
 const chooseFourCats = (cats) => {
   const max = cats.length;
@@ -50,7 +35,7 @@ const chooseFourCats = (cats) => {
   ];
 };
 
-export default function Home({ catNames, fourCats, statusCode }) {
+export default function Home({ catNames, fourCats, catImages, statusCode }) {
   const [catId, setCatId] = React.useState(null);
   const catLink = React.useRef(null);
 
@@ -99,11 +84,18 @@ export default function Home({ catNames, fourCats, statusCode }) {
             </Link>
           </div>
           <div className={styles['cat-display']}>
-            {fourCats.map((cat) => (
+            {fourCats.map((cat, index) => (
               <div key={cat.id}>
                 {/* Cat Image */}
                 <div className={styles['cat-display__image']}>
-                  <Image src={cat.image?.url ?? '/kitten-silhouette-2993fc-lg+copy_ForgottenKitten_2.jpg'} alt={cat.name} layout='fill' objectFit='cover' />
+                  <Image 
+                    src={catImages[index].image} 
+                    alt={cat.name} 
+                    layout='fill' 
+                    objectFit='cover' 
+                    placeholder='blur' 
+                    blurDataURL={catImages[index].blurDataURL}
+                  />
                 </div>
                 {/* Cat Name */}
                 <p style={{ fontWeight: '500'}}>{cat.name}</p>
@@ -125,31 +117,70 @@ export default function Home({ catNames, fourCats, statusCode }) {
           <div className={styles['image-container']}>
             <div className={styles['image2']}>
               <Image 
-                src='/image 2.png'
+                src={image2}
                 alt='Cat Image'
                 layout='fill'
                 objectFit='cover'
+                placeholder='blur'
               />
             </div>
             <div className={styles['image1']}>
               <Image 
-                src='/image 1.png'
+                src={image1}
                 alt='Cat Image'
                 layout='fill'
                 objectFit='cover'
+                placeholder='blur'
               />
             </div>
           </div>
           <div className={styles['image3']}>
             <Image 
-              src='/image 3.png'
+              src={image3}
               alt='Cat Image'
               layout='fill'
               objectFit='cover'
+              placeholder='blur'
             />
           </div>
         </div>
       </section>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const response = await getAllBreeds();
+  const cats = await response.json();
+
+  if (response.status !== 200) {
+    return { props: { statusCode: response.status }};
+  }
+
+  const fourCats = chooseFourCats(cats);
+  const catNames = cats.map(cat => ({id: cat.id, name: cat.name}));
+  const catImages = await Promise.all(fourCats.map(cat => {
+    if (cat.image?.url) {
+      return getPlaiceholder(cat.image.url).then(({ base64, img }) => {
+        return {
+          image: img,
+          blurDataURL: base64
+        };
+      });
+    }
+
+    return {
+      image: missingImagePlaceholder,
+      blurDataURL: null,
+    };
+  }));
+
+  return {
+    props: {
+      catNames,
+      fourCats,
+      catImages,
+      statusCode: 200,
+    }
+  };
 }

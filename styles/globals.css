@@ -24,3 +24,7 @@ h2 {
   font-size: 48px;
   margin: 0;
 }
+
+img {
+  transition: 0.3s;
+}

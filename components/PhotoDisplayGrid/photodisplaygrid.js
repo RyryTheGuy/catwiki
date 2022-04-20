@@ -11,7 +11,7 @@ export function PhotoDisplayGrid({ images }) {
         <div className={styles['four-photos']}>
           {images.map(image => (
             <div key={image.id} className={styles['photos__image-container']}>
-              <Image src={image.url} alt="Image" layout="fill" objectFit="cover" />
+              <Image src={image.image} alt="Image" layout="fill" objectFit="cover" blurDataURL={image.blurDataURL} />
             </div>
           ))}
         </div>
@@ -22,7 +22,7 @@ export function PhotoDisplayGrid({ images }) {
         <div className={styles['six-photos']}>
           {images.map(image => (
             <div key={image.id} className={styles['photos__image-container']}>
-              <Image src={image.url} alt="Image" layout="fill" objectFit="cover" />
+              <Image src={image.image} alt="Image" layout="fill" objectFit="cover" blurDataURL={image.blurDataURL} />
             </div>
           ))}
         </div>
@@ -34,7 +34,7 @@ export function PhotoDisplayGrid({ images }) {
         <div className={styles['eight-photos']}>
           {images.map(image => (
             <div key={image.id} className={styles['photos__image-container']}>
-              <Image src={image.url} alt="Image" layout="fill" objectFit="cover" />
+              <Image src={image.image} alt="Image" layout="fill" objectFit="cover" blurDataURL={image.blurDataURL} />
             </div>
           ))}
         </div>
